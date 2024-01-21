@@ -33,7 +33,7 @@ export default function Hall() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item) => (
+                    {data.map((item: any) => (
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.xAxis}</td>

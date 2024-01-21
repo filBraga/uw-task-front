@@ -25,7 +25,7 @@ const Page = () => {
         }
     }, [id]); // Dependency array with 'id', to re-run the effect when 'id' changes
 
-    const fetchHallData = async (id) => {
+    const fetchHallData = async (id: any) => {
         try {
             const response = await fetch(`http://localhost:3001/hall/${id}`);
             const data = await response.json();
@@ -36,7 +36,7 @@ const Page = () => {
         }
     };
 
-    const fetchReservedSeats = async (id) => {
+    const fetchReservedSeats = async (id: any) => {
         try {
             const response = await fetch(`http://localhost:3001/reserved-seat/hall/${id}`);
             const data = await response.json();
@@ -47,7 +47,7 @@ const Page = () => {
         }
     };
 
-    const handleCircleClick = async (xAxis, yAxis) => {
+    const handleCircleClick = async (xAxis: any, yAxis: any) => {
         try {
             const hallId = id; // Assuming 'id' from the router query is the hallId
             const response = await fetch(
@@ -68,17 +68,18 @@ const Page = () => {
     return (
         <div>
             <div>
-                {reservedSeats.map((row, rowIndex) => (
+                {reservedSeats.map((row: any[], rowIndex: any) => (
                     <div key={rowIndex}>
-                        {row.map((cell, cellIndex) => (
-                            <span
-                                key={cellIndex}
-                                className={`circle ${cell === 1 ? 'red' : 'green'}`}
-                                onClick={() => handleCircleClick(cellIndex, rowIndex)}
-                            >
-                                {cellIndex},{rowIndex}
-                            </span>
-                        ))}
+                        {row &&
+                            row.map((cell: any, cellIndex: any) => (
+                                <span
+                                    key={cellIndex}
+                                    className={`circle ${cell === 1 ? 'red' : 'green'}`}
+                                    onClick={() => handleCircleClick(cellIndex, rowIndex)}
+                                >
+                                    {cellIndex},{rowIndex}
+                                </span>
+                            ))}
                     </div>
                 ))}
             </div>
