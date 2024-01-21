@@ -67,6 +67,24 @@ const Page = () => {
         }
     };
 
+    const handleNextAvailableTicketClick = async () => {
+        try {
+            const hallId = id; // Assuming 'id' from the router query is the hallId
+            const response = await fetch(
+                `https://c1i0ye43g5.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/nextAvailableTicket?hallId=${hallId}`,
+            );
+            const data = await response.json();
+
+            console.log('No prefered seat');
+            console.log(data);
+
+            alert(`Next available ticket: ${JSON.stringify(data)}`);
+            // You can do something with this data
+        } catch (error) {
+            console.error('Error fetching next available ticket:', error);
+        }
+    };
+
     return (
         <div>
             <div>
@@ -77,14 +95,15 @@ const Page = () => {
                                 <span
                                     key={cellIndex}
                                     className={`circle ${cell === 1 ? 'red' : 'green'}`}
-                                    onClick={() => handleCircleClick(cellIndex, rowIndex)}
+                                    onClick={() => handleCircleClick(rowIndex, cellIndex)}
                                 >
-                                    {cellIndex},{rowIndex}
+                                    {rowIndex},{cellIndex}
                                 </span>
                             ))}
                     </div>
                 ))}
             </div>
+            <button onClick={handleNextAvailableTicketClick}>No prefered seat</button>
         </div>
     );
 };
