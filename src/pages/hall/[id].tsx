@@ -27,7 +27,7 @@ const Page = () => {
 
     const fetchHallData = async (id: any) => {
         try {
-            const response = await fetch(`http://localhost:3001/hall/${id}`);
+            const response = await fetch(`https://c1i0ye43g5.execute-api.us-east-1.amazonaws.com/dev/hall/${id}`);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -38,7 +38,9 @@ const Page = () => {
 
     const fetchReservedSeats = async (id: any) => {
         try {
-            const response = await fetch(`http://localhost:3001/reserved-seat/hall/${id}`);
+            const response = await fetch(
+                `https://c1i0ye43g5.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/hall/${id}`,
+            );
             const data = await response.json();
             return data;
         } catch (error) {
@@ -51,7 +53,7 @@ const Page = () => {
         try {
             const hallId = id; // Assuming 'id' from the router query is the hallId
             const response = await fetch(
-                `http://localhost:3001/reserved-seat/nextAvailableTicket?hallId=${hallId}&xAxis=${xAxis}&yAxis=${yAxis}`,
+                `https://c1i0ye43g5.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/nextAvailableTicket?hallId=${hallId}&xAxis=${xAxis}&yAxis=${yAxis}`,
             );
             const data = await response.json();
 
