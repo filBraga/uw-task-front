@@ -81,10 +81,22 @@ const Page = () => {
         }
     };
 
+    function mirrorDiagonally(matrix: any[][]) {
+        for (let i = 0; i < matrix.length; i++) {
+            for (let j = i + 1; j < matrix[i].length; j++) {
+                // Swap elements across the diagonal
+                let temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        return matrix;
+    }
+
     return (
         <div>
             <div>
-                {reservedSeats.map((row: any[], rowIndex: any) => (
+                {mirrorDiagonally(reservedSeats).map((row: any[], rowIndex: any) => (
                     <div key={rowIndex}>
                         {row &&
                             row.map((cell: any, cellIndex: any) => (
