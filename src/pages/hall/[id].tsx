@@ -27,7 +27,7 @@ const Page = () => {
 
     const fetchHallData = async (id: any) => {
         try {
-            const response = await fetch(`https://mowygv6gee.execute-api.us-east-1.amazonaws.com/dev/hall/${id}`);
+            const response = await fetch(`http://localhost:3001/hall/${id}`);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -38,9 +38,7 @@ const Page = () => {
 
     const fetchReservedSeats = async (id: any) => {
         try {
-            const response = await fetch(
-                `https://mowygv6gee.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/hall/${id}`,
-            );
+            const response = await fetch(`http://localhost:3001/reserved-seat/hall/${id}`);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -53,7 +51,7 @@ const Page = () => {
         try {
             const hallId = id; // Assuming 'id' from the router query is the hallId
             const response = await fetch(
-                `https://mowygv6gee.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/nextAvailableTicket?hallId=${hallId}&xAxis=${xAxis}&yAxis=${yAxis}`,
+                `http://localhost:3001/reserved-seat/nextAvailableTicket?hallId=${hallId}&xAxis=${xAxis}&yAxis=${yAxis}`,
             );
             const data = await response.json();
 
@@ -70,9 +68,7 @@ const Page = () => {
     const handleNextAvailableTicketClick = async () => {
         try {
             const hallId = id; // Assuming 'id' from the router query is the hallId
-            const response = await fetch(
-                `https://mowygv6gee.execute-api.us-east-1.amazonaws.com/dev/reserved-seat/nextAvailableTicket?hallId=${hallId}`,
-            );
+            const response = await fetch(`http://localhost:3001/reserved-seat/nextAvailableTicket?hallId=${hallId}`);
             const data = await response.json();
 
             console.log('No prefered seat');
@@ -95,9 +91,9 @@ const Page = () => {
                                 <span
                                     key={cellIndex}
                                     className={`circle ${cell === 1 ? 'red' : 'green'}`}
-                                    onClick={() => handleCircleClick(rowIndex, cellIndex)}
+                                    onClick={() => handleCircleClick(cellIndex, rowIndex)}
                                 >
-                                    {rowIndex},{cellIndex}
+                                    {cellIndex}, {rowIndex}
                                 </span>
                             ))}
                     </div>
