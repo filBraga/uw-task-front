@@ -14,7 +14,7 @@ export default function Hall() {
     }, []);
 
     const fetchData = async () => {
-        const response = await fetch('http://localhost:3001/hall');
+        const response = await fetch('https://mowygv6gee.execute-api.us-east-1.amazonaws.com/dev/hall');
         const data = await response.json();
         return data;
     };
